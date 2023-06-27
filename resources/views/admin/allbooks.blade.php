@@ -18,18 +18,21 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
+                    @foreach($books as $book)
                     <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                        <td>Huckleberry Finn</td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                             <strong>{{ $book->id }}</strong></td>
+                        <td>{{ $book->book_name}}</td>
                         <td><span class="badge bg-label-primary me-1"></span></td>
-                        <td>Penguin Classics</td>
-                        <td>Children Classics</td>
-                        <td>200</td>
+                        <td>{{$book->book_publisher_name}}</td>
+                        <td>{{ $book->book_category_name }}</td>
+                        <td>{{ $book->price }}</td>
                         <td>
                             <a href="" class="btn btn-primary">Edit</a>
                             <a href="" class="btn btn-secondary">Delete</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

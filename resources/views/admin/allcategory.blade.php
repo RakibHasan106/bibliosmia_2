@@ -20,15 +20,19 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
+                        @foreach($categories as $category)
                         <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                            <td>Classics</td>
-                            <td><span class="badge bg-label-primary me-1">1</span></td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> 
+                                <strong>{{ $category -> id }}</strong></td>
+                            <td>{{$category->category_name}}</td>
+                            <td><span class="badge bg-label-primary me-1">
+                                {{$category->product_count}}</span></td>
                             <td>
-                                <a href="" class="btn btn-primary">Edit</a>
-                                <a href="" class="btn btn-secondary">Delete</a>
+                                <a href="{{route('editcategory',$category->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('deletecategory',$category->id)}}" class="btn btn-secondary">Delete</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

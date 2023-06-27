@@ -42,10 +42,17 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/admin/all-category','Index')->name('allcategory');
         Route::get('/admin/add-category','AddCategory')->name('addcategory');
         Route::post('/admin/store-category','StoreCategory')->name('storecategory');
+        Route::get('/admin/edit-category/{id}','EditCategory')->name('editcategory');
+        Route::get('/admin/delete-category/{id}','DeleteCategory')->name('deletecategory');
+        Route::post('/admin/update-category','UpdateCategory')->name('updatecategory');
     });
     Route::controller(PublisherController::class)->group(function(){
         Route::get('/admin/all-publishers','Index')->name('allpublishers');
         Route::get('/admin/add-publisher','AddPublisher')->name('addpublisher');
+        Route::post('/admin/store-publisher','StorePublisher')->name('storepublisher');
+        Route::get('/admin/edit-publisher/{id}','EditPublisher')->name('editpublisher');
+        Route::post('/admin/update-publisher','UpdatePublisher')->name('updatepublisher');
+        Route::get('/admin/delete-publisher/{id}','DeletePublisher')->name('deletepublisher');
     });
     Route::controller(BookController::class)->group(function(){
         Route::get('/admin/all-books','Index')->name('allbooks');
