@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="{{asset('dashboard/assets')}}" data-template="vertical-menu-template-free">
+    data-assets-path="{{ asset('dashboard/assets') }}" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -11,9 +11,9 @@
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('dashboard/assets/img/favicon/favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('dashboard/assets/img/favicon/favicon.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,26 +23,28 @@
         rel="stylesheet" />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{asset('dashboard/assets/vendor/fonts/boxicons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/fonts/boxicons.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/assets/vendor/css/core.css')}}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{asset('dashboard/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{asset('dashboard/assets/css/demo.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/css/core.css') }}"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/css/theme-default.css') }}"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
-    <link rel="stylesheet" href="{{asset('dashboard/assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="{{asset('dashboard/assets/vendor/js/helpers.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/js/helpers.js') }}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{asset('dashboard/assets/js/config.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/js/config.js') }}"></script>
 </head>
 
 <body>
@@ -53,7 +55,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="/admin/dashboard" class="app-brand-link">
                         <span class="app-brand-text demo menu-text fw-bolder ms-2">Bibliosmia</span>
                     </a>
 
@@ -68,23 +70,38 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
                     <li class="menu-item active">
-                        <a href="{{route('admindashboard')}}" class="menu-link">
+                        <a href="{{ route('admindashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
 
-                    
+
                     <!-- Components -->
+
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Author</span></li>
+                    <li class="menu-item">
+                        <a href="{{ route('addauthor') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Add Author</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('allauthors') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">All Authors</div>
+                        </a>
+                    </li>
+
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Category</span></li>
                     <li class="menu-item">
-                        <a href="{{route('addcategory')}}" class="menu-link">
+                        <a href="{{ route('addcategory') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Add Category</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('allcategory')}}" class="menu-link">
+                        <a href="{{ route('allcategory') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">All Category</div>
                         </a>
@@ -92,13 +109,13 @@
 
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Publishers</span></li>
                     <li class="menu-item">
-                        <a href="{{route('addpublisher')}}" class="menu-link">
+                        <a href="{{ route('addpublisher') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Add Publisher</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('allpublishers')}}" class="menu-link">
+                        <a href="{{ route('allpublishers') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">All Publishers</div>
                         </a>
@@ -106,13 +123,13 @@
 
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Books</span></li>
                     <li class="menu-item">
-                        <a href="{{route('addbook')}}" class="menu-link">
+                        <a href="{{ route('addbook') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Add Book</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('allbooks')}}" class="menu-link">
+                        <a href="{{ route('allbooks') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">All Books</div>
                         </a>
@@ -120,24 +137,24 @@
 
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Orders</span></li>
                     <li class="menu-item">
-                        <a href="{{route('pendingorders')}}" class="menu-link">
+                        <a href="{{ route('pendingorders') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Pending Orders</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('completedorders')}}" class="menu-link">
+                        <a href="{{ route('completedorders') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Completed Orders</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{route('cancelledorders')}}" class="menu-link">
+                        <a href="{{ route('cancelledorders') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Cancelled Orders</div>
                         </a>
                     </li>
-                    
+
 
 
                 </ul>
@@ -181,7 +198,7 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{asset('dashboard/assets/img/avatars/1.png')}}" alt
+                                        <img src="{{ asset('dashboard/assets/img/avatars/1.png') }}" alt
                                             class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
@@ -191,8 +208,8 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{asset('dashboard/assets/img/avatars/1.png')}}" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="{{ asset('dashboard/assets/img/avatars/1.png') }}"
+                                                            alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
@@ -231,7 +248,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" href="/log_out">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -265,22 +282,22 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{asset('dashboard/assets/vendor/libs/jquery/jquery.js')}}"></script>
-    <script src="{{asset('dashboard/assets/vendor/libs/popper/popper.js')}}"></script>
-    <script src="{{asset('dashboard/assets/vendor/js/bootstrap.js')}}"></script>
-    <script src="{{asset('dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-    <script src="{{asset('dashboard/assets/vendor/js/menu.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{asset('dashboard/assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
     <!-- Main JS -->
-    <script src="{{asset('dashboard/assets/js/main.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="{{asset('dashboard/assets/js/dashboards-analytics.js')}}"></script>
+    <script src="{{ asset('dashboard/assets/js/dashboards-analytics.js') }}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

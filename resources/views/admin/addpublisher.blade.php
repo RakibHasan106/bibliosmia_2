@@ -3,7 +3,7 @@
     <div class="row">
         <!-- Basic Layout -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Add Publisher</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page /</span>Add Publisher</h4>
             <div class="col-xxl">
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">

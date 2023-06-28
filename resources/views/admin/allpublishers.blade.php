@@ -1,9 +1,9 @@
 @extends('admin.layouts.template')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Publishers</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page /</span>All Publishers</h4>
     <div class="card">
-        <h5 class="card-header">All Publishers</h5>
+        <h5 class="card-header">Publishers</h5>
         @if(session()->has('message'))
             <div class="alert alert-success">
                 {{session()->get('message')}}

@@ -3,11 +3,11 @@
     <div class="row">
         <!-- Basic Layout -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page /</span>Edit Category</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page /</span>Change Book Img</h4>
             <div class="col-xxl">
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Edit Category</h5>
+                        <h5 class="mb-0">Update Book Image</h5>
                         <small class="text-muted float-end">Input Information</small>
                     </div>
                     <div class="card-body">
@@ -20,14 +20,21 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{ route('updatecategory') }}" method="POST">
+                        <form action="{{ route('updatebookimg') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="idstorage" value="{{$category_info->id}}">
+                            <input type="hidden" name="idstorage" value="{{$book_info->id}}">
+
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                                <label class="col-sm-2 col-form-label" for="basic-default-name">Previous Image</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="basic-default-name" name="category_name"
-                                        value="{{$category_info->category_name}}" />
+                                    <img src="{{asset($book_info->book_img)}}">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-default-name">New Image</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="file" id="formFile" name="book_img"/>
                                 </div>
                             </div>
 

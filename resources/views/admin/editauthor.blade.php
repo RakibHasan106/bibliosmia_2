@@ -3,11 +3,11 @@
     <div class="row">
         <!-- Basic Layout -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page /</span>Edit Category</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Page /</span>Edit Author</h4>
             <div class="col-xxl">
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Edit Category</h5>
+                        <h5 class="mb-0">Edit Author</h5>
                         <small class="text-muted float-end">Input Information</small>
                     </div>
                     <div class="card-body">
@@ -20,14 +20,14 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{ route('updatecategory') }}" method="POST">
+                        <form action="{{ route('updateauthor') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="idstorage" value="{{$category_info->id}}">
+                            <input type="hidden" name="idstorage" value="{{$author_info->id}}">
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="basic-default-name" name="category_name"
-                                        value="{{$category_info->category_name}}" />
+                                    <input type="text" class="form-control" id="basic-default-name" name="author_name"
+                                        value="{{$author_info->author_name}}" />
                                 </div>
                             </div>
 

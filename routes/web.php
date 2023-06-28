@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
@@ -24,9 +25,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified','role:user'])->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,6 +36,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::controller(DashboardController::class)->group(function(){
         Route::get('/admin/dashboard','Index')->name('admindashboard');
     });
+    
+    Route::controller(AuthorController::class)->group(function(){
+        Route::get('/admin/add-author','AddAuthor')->name('addauthor');
+        Route::get('/admin/all-authors','AllAuthors')->name('allauthors');
+        Route::post('/admin/store-author','StoreAuthor')->name('storeauthor');
+        Route::get('/admin/delete-author/{id}','DeleteAuthor')->name('deleteauthor');
+        Route::get('/admin/edit-author/{id}','EditAuthor')->name('editauthor');
+        Route::post('/admin/update-author','UpdateAuthor')->name('updateauthor');
+    });
+
     Route::controller(CategoryController::class)->group(function(){
         Route::get('/admin/all-category','Index')->name('allcategory');
         Route::get('/admin/add-category','AddCategory')->name('addcategory');
@@ -46,6 +54,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/admin/delete-category/{id}','DeleteCategory')->name('deletecategory');
         Route::post('/admin/update-category','UpdateCategory')->name('updatecategory');
     });
+    
     Route::controller(PublisherController::class)->group(function(){
         Route::get('/admin/all-publishers','Index')->name('allpublishers');
         Route::get('/admin/add-publisher','AddPublisher')->name('addpublisher');
@@ -54,14 +63,31 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/admin/update-publisher','UpdatePublisher')->name('updatepublisher');
         Route::get('/admin/delete-publisher/{id}','DeletePublisher')->name('deletepublisher');
     });
+    
     Route::controller(BookController::class)->group(function(){
         Route::get('/admin/all-books','Index')->name('allbooks');
         Route::get('/admin/add-book','AddBook')->name('addbook');
+        Route::post('/admin/store-book','StoreBook')->name('storebook');
+        Route::get('/admin/delete-book/{id}','DeleteBook')->name('deletebook');
+        Route::get('/admin/editboook/{id}','EditBook')->name('editbook');
+        Route::post('/admin/updatebook','UpdateBook')->name('updatebook');
+
+        Route::get('/admin/change-book-img/{id}','ChangeBookImg')->name('changebookimg');
+        Route::post('/admin/update-book-img','UpdateBookImg')->name('updatebookimg');
     });
+
     Route::controller(OrderController::class)->group(function(){
         Route::get('/admin/pending-orders','PendingOrders')->name('pendingorders');
         Route::get('/admin/completed-orders','CompletedOrders')->name('completedorders');
         Route::get('/admin/cancelled-orders','CancelledOrders')->name('cancelledorders');
+    });
+
+    Route::get('/log_out',function(){
+        session()->invalidate();
+
+        session()->regenerateToken();
+
+        return redirect('/login');
     });
 });
 
