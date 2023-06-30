@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\PublisherController;
+use App\Http\Controllers\User\clientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -22,7 +23,19 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.index');
+});
+
+Route::controller(clientController::class)->group(function(){
+    Route::get('/','index');
+    Route::get('/login','LogIn');
+    Route::get('/signup','SignUp');
+    Route::get('/cart','Cart');
+    Route::get('/aboutus','AboutUs');
+    Route::get('/category/{id}/{slug}','CategoryDisplay')->name('categorydisplay');
+    Route::get('/publisher/{id}/{slug}','PublisherDisplay')->name('publisherdisplay');
+    Route::get('/author/{id}/{slug}','AuthorDisplay')->name('authordisplay');
+    Route::get('/book/{id}/{slug}','BookPageDisplay')->name('bookpage');
 });
 
 

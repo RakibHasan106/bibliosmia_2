@@ -1,0 +1,16 @@
+/* index html page styles */
+
+/* About Us Styles */
+
+.about-container{
+    margin-top:50px;
+    margin-bottom:50px;
+    display: flex;
+    justify-content: center;
+}
+.about-small-container{
+    display:flex;
+    flex-wrap: wrap;
+    max-width: 700px;
+    justify-content: center;
+}

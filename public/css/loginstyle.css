@@ -1,0 +1,44 @@
+/* login page unique styles */
+
+.loginbox{
+    border:1px solid black;
+    max-width:350px;
+    max-height:150vh;
+    background-color: aliceblue;
+    margin-top:50px;
+    margin-bottom:50px;
+}
+.loginbox div{
+    margin:0px 25px 0px 25px;
+}
+.loginbox a:hover{
+    color:#0E8388;
+    text-decoration: underline;
+}
+.loginbox input{
+    margin:10px;
+    height:25px;
+    width:300px;
+    /* border-radius:10px; */
+    font-size:18px;
+    padding-left:10px;
+}
+.loginbox button{
+    margin: 20px 0px 0px 0px;
+    /* border-radius:10px; */
+    color:white;
+    background-color: #009966;
+    width:320px;
+    height:30px;
+    font-size:19px;
+}
+.loginbox p{
+    font-size:smaller;
+}
+/* .loginbox p a:hover{
+    color:#009966;
+} */
+.loginbox button:hover{
+    transition:.4s;
+    background-color: #2C3333;
+}

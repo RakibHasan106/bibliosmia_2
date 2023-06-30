@@ -1,0 +1,44 @@
+/* signup Page unique styles */
+
+.signupbox{
+    background-color: aliceblue;
+    border:1px solid black;
+    max-width:550px;
+    max-height:1500px;
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+.signupbox div{
+    margin:0px 25px 0px 25px;
+}
+.signupbox a:hover{
+    color:#0E8388;
+    text-decoration: underline;
+}
+.signupbox input{
+    margin:10px;
+    height:25px;
+    width:300px;
+    /* border-radius:10px; */
+    font-size:18px;
+    padding-left:10px;
+}
+.signupbox button{
+    margin: 20px 0px 0px 0px;
+    /* border-radius:10px; */
+    color:white;
+    background-color: #009966;
+    width:320px;
+    height:30px;
+    font-size:19px;
+}
+.signupbox p{
+    font-size:smaller;
+}
+/* .signupbox p a:hover{
+    color:#009966;
+} */
+.signupbox button:hover{
+    transition: .4s;
+    background-color: #2C3333;
+}

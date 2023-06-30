@@ -76,6 +76,11 @@ class BookController extends Controller
     public function DeleteBook($id){
         $book_info = Book::findOrFail($id);
         unlink($book_info->book_img);
+
+        Category::where('id',$book_info->book_category_id)->decrement('product_count'); 
+        Publisher::where('id',$book_info->book_publisher_id)->decrement('publisher_count'); 
+        Author::where('id',$book_info->author_id)->decrement('book_count');
+
         Book::findOrFail($id)->delete();
         return redirect()->route('allbooks')->with('message','Book Deleted Successfully');
     }
