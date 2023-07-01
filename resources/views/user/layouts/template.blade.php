@@ -72,7 +72,7 @@
                 <a href="./login" class="login">Login</a>
             @endif
 
-            <a href="./cart" style="color:white"><i class="fa-solid fa-cart-shopping cart-button"></i></a>
+            <a href="{{route('cartpageview')}}" style="color:white"><i class="fa-solid fa-cart-shopping cart-button"></i></a>
 
             <div class="search">
                 <input type="text" placeholder="search by book name" class="search-box">

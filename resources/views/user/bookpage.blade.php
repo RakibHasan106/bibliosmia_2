@@ -13,8 +13,9 @@
         table a:hover {
             color: whitesmoke;
         }
-        .author_anchor:hover{
-            color:#176B87;
+
+        .author_anchor:hover {
+            color: #176B87;
         }
     </style>
 @endsection
@@ -32,12 +33,17 @@
                         </a>
                     </p>
                 </div>
-                <p><b>BDT&nbsp&nbsp{{ $book->price }} &nbsp&nbsp</b>
+                <p><b>BDT.&nbsp&nbsp{{ $book->price }} &nbsp&nbsp</b>
                 </p>
                 <br><br>
                 <div>
-                    <input type="number" placeholder="1" min="1">
-                    <button type="submit">Add to cart</button>
+                    <form action="{{route('addtocart')}}" method="POST">
+                        @csrf
+                        <input type="number" value="1" min="1" name="quantity">
+                        <input type="hidden" value="{{ $book->id }}" name="book_id">
+                        <input type="hidden" value="{{ $book->price }}" name="price">
+                        <button type="submit">Add to cart</button>
+                    </form>
                 </div>
                 <br>
                 <div>
@@ -83,63 +89,72 @@
     <br><br><br><br>
 
     <!-- Book Suggestion based on author -->
-    <h2 style="display:flex;justify-content:center;margin:0px">More Books of {{$publisher->publisher_name}}</h2>
-    <b><hr></b>
+    <h2 style="display:flex;justify-content:center;margin:0px">More Books of {{ $author->author_name }}</h2>
+    <b>
+        <hr>
+    </b>
     @php
         $booksofsameauthor = App\Models\Book::where('author_id', $author->id)
-        ->whereNotIn('id',[$book->id])
-        ->take(4)->get();
+            ->whereNotIn('id', [$book->id])
+            ->take(4)
+            ->get();
     @endphp
     <div class="images">
-        @foreach($booksofsameauthor as $bookofsameauthor)
-        <div class="book"> <img src="/{{$bookofsameauthor->book_img}}" alt="img not found">
-            <a href="{{route('bookpage',[$bookofsameauthor->id,$bookofsameauthor->slug])}}">
-                <h4 style="padding-left:15px;margin-top: 2px;">{{$bookofsameauthor->book_name}}</h4>
-            </a>
-            <h6 style="padding-left:15px;margin-top: 0px;">BDT.{{$bookofsameauthor->price}}</h6>
-        </div>
+        @foreach ($booksofsameauthor as $bookofsameauthor)
+            <div class="book"> <img src="/{{ $bookofsameauthor->book_img }}" alt="img not found">
+                <a href="{{ route('bookpage', [$bookofsameauthor->id, $bookofsameauthor->slug]) }}">
+                    <h4 style="padding-left:15px;margin-top: 2px;">{{ $bookofsameauthor->book_name }}</h4>
+                </a>
+                <h6 style="padding-left:15px;margin-top: 0px;">BDT.{{ $bookofsameauthor->price }}</h6>
+            </div>
         @endforeach
     </div>
 
     <br><br>
 
     <!-- Book Suggestion based on category -->
-    <h2 style="display:flex;justify-content:center;margin:0px">More {{$category->category_name}} Books</h2>
-    <b><hr></b>
+    <h2 style="display:flex;justify-content:center;margin:0px">More {{ $category->category_name }} Books</h2>
+    <b>
+        <hr>
+    </b>
     @php
         $booksinsamecategory = App\Models\Book::where('book_category_id', $category->id)
-        ->whereNotIn('id',[$book->id])
-        ->take(4)->get();
+            ->whereNotIn('id', [$book->id])
+            ->take(4)
+            ->get();
     @endphp
     <div class="images">
-        @foreach($booksinsamecategory as $bookinsamecategory)
-        <div class="book"> <img src="/{{$bookinsamecategory->book_img}}" alt="img not found">
-            <a href="{{route('bookpage',[$bookinsamecategory->id,$bookinsamecategory->slug])}}">
-                <h4 style="padding-left:15px;margin-top: 2px;">{{$bookinsamecategory->book_name}}</h4>
-            </a>
-            <h6 style="padding-left:15px;margin-top: 0px;">BDT.{{$bookinsamecategory->price}}</h6>
-        </div>
+        @foreach ($booksinsamecategory as $bookinsamecategory)
+            <div class="book"> <img src="/{{ $bookinsamecategory->book_img }}" alt="img not found">
+                <a href="{{ route('bookpage', [$bookinsamecategory->id, $bookinsamecategory->slug]) }}">
+                    <h4 style="padding-left:15px;margin-top: 2px;">{{ $bookinsamecategory->book_name }}</h4>
+                </a>
+                <h6 style="padding-left:15px;margin-top: 0px;">BDT.{{ $bookinsamecategory->price }}</h6>
+            </div>
         @endforeach
     </div>
 
     <br><br>
 
     <!-- Book Suggestion based on category -->
-    <h2 style="display:flex;justify-content:center;margin:0px">More {{$category->category_name}} Books</h2>
-    <b><hr></b>
+    <h2 style="display:flex;justify-content:center;margin:0px">More Books from {{ $publisher->publisher_name }}</h2>
+    <b>
+        <hr>
+    </b>
     @php
         $booksofsamepublisher = App\Models\Book::where('book_publisher_id', $publisher->id)
-        ->whereNotIn('id',[$book->id])
-        ->take(4)->get();
+            ->whereNotIn('id', [$book->id])
+            ->take(4)
+            ->get();
     @endphp
     <div class="images">
-        @foreach($booksofsamepublisher as $bookofsamepublisher)
-        <div class="book"> <img src="/{{$bookofsamepublisher->book_img}}" alt="img not found">
-            <a href="{{route('bookpage',[$bookofsamepublisher->id,$bookofsamepublisher->slug])}}">
-                <h4 style="padding-left:15px;margin-top: 2px;">{{$bookofsamepublisher->book_name}}</h4>
-            </a>
-            <h6 style="padding-left:15px;margin-top: 0px;">BDT.{{$bookofsamepublisher->price}}</h6>
-        </div>
+        @foreach ($booksofsamepublisher as $bookofsamepublisher)
+            <div class="book"> <img src="/{{ $bookofsamepublisher->book_img }}" alt="img not found">
+                <a href="{{ route('bookpage', [$bookofsamepublisher->id, $bookofsamepublisher->slug]) }}">
+                    <h4 style="padding-left:15px;margin-top: 2px;">{{ $bookofsamepublisher->book_name }}</h4>
+                </a>
+                <h6 style="padding-left:15px;margin-top: 0px;">BDT.{{ $bookofsamepublisher->price }}</h6>
+            </div>
         @endforeach
     </div>
     <br><br>

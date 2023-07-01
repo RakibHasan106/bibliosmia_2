@@ -33,9 +33,20 @@ td input {
     /* height: 30px;
     padding: 5px; */
 }
-td a {
+/* td a {
     color: #ff523b;
     font-size: 12px;
+} */
+td a:hover {
+    color: #ff523b;
+}
+td button{
+    border: none;
+    color: #ff523b;
+    font-size: 12px;
+}
+td button:hover{
+    cursor:pointer;
 }
 td img {
     width: 80px;

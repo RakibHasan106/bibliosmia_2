@@ -30,12 +30,19 @@ Route::controller(clientController::class)->group(function(){
     Route::get('/','index');
     Route::get('/login','LogIn');
     Route::get('/signup','SignUp');
-    Route::get('/cart','Cart');
     Route::get('/aboutus','AboutUs');
     Route::get('/category/{id}/{slug}','CategoryDisplay')->name('categorydisplay');
     Route::get('/publisher/{id}/{slug}','PublisherDisplay')->name('publisherdisplay');
     Route::get('/author/{id}/{slug}','AuthorDisplay')->name('authordisplay');
     Route::get('/book/{id}/{slug}','BookPageDisplay')->name('bookpage');
+});
+
+Route::middleware(['auth','role:user'])->group(function(){
+    Route::controller(clientController::class)->group(function(){
+        Route::post('/add-to-cart','AddtoCart')->name('addtocart');
+        Route::get('/cart','CartPageView')->name('cartpageview');
+        Route::post('/cart','RemoveFromCart')->name('removefromcart');
+    });
 });
 
 
