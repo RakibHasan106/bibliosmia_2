@@ -37,6 +37,10 @@ Route::controller(clientController::class)->group(function(){
     Route::get('/publisher/{id}/{slug}','PublisherDisplay')->name('publisherdisplay');
     Route::get('/author/{id}/{slug}','AuthorDisplay')->name('authordisplay');
     Route::get('/book/{id}/{slug}','BookPageDisplay')->name('bookpage');
+    Route::post('/search','Search')->name('search');
+    Route::get('/all-categories','ShowAllCategories')->name('showallcategories');
+    Route::get('/all-authors','ShowAllAuthors')->name('showallauthors');
+    Route::get('all-publishers','ShowAllPublishers')->name('showallpublishers');
 });
 
 Route::middleware(['auth','role:user'])->group(function(){

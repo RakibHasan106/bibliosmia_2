@@ -152,4 +152,39 @@ class clientController extends Controller
         $user_info = User::where('id',$userid)->first();
         return view('user.useraccount',compact('orders','user_info'));
     }
+
+    public function Search(request $req){
+        $key = $req->search_key;
+        $results = Book::where('book_name', 'like', '%' . $key . '%')->get();
+        $authornameslikekey = Author::where('author_name', 'like' ,'%'. $key . '%')->get();
+        
+        foreach($authornameslikekey as $authornamelikekey){
+            $books = Book::where('author_name',$authornamelikekey->author_name)->get();
+            foreach($books as $book){
+                if(!($results->contains($book))){
+                    $results = $results->concat($book);
+                }
+            }  
+        }
+
+        $count = $results->count();
+
+        return view('user.searchresults', compact('results','key','count'));
+    }
+
+
+    public function ShowAllCategories(){
+        $categories = Category::all();
+        return view('user.allcategories',compact('categories'));
+    }
+
+    public function ShowAllAuthors(){
+        $authors = Author::all();
+        return view('user.allauthors',compact('authors'));
+    }
+
+    public function ShowAllPublishers(){
+        $publishers = Publisher::all();
+        return view('user.allpublishers',compact('publishers'));
+    }
 }

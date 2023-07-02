@@ -45,7 +45,7 @@
                             <div class="cart-info">
                                 <img src="/{{ $book_info->book_img }}" alt="Img not found">
                                 <div>
-                                    <a href="{{route('bookpage',[$book_info->id,$book_info->slug])}}">
+                                    <a href="{{ route('bookpage', [$book_info->id, $book_info->slug]) }}">
                                         <p>{{ $book_info->book_name }}</p>
                                     </a>
                                     <small>Price: BDT.{{ $book_info->price }}</small> <br>
@@ -67,14 +67,20 @@
                 @endforeach
 
             </table>
-            <div class="total-price">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Subtotal</td>
-                            <td>{{ $total_price }} TK</td>
-                        </tr>
-                        {{-- <tr>
+            @if ($total_price === 0)
+                <h3 style="text-align:center">
+                    Cart is Empty . <a href="/" class="cart-add-some-product">Add Some Products</a>
+                </h3>
+            @else
+                <div class="total-price">
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>{{ $total_price }} TK</td>
+                            </tr>
+                            {{-- <tr>
                             <td>Discount</td>
                             <td>-100.00 TK</td>
                         </tr>
@@ -82,16 +88,17 @@
                             <td>Total</td>
                             <td>1750.00 TK</td>
                         </tr> --}}
-                        <tr>
-                            <td> </td>
-                            <td>
-                                <a href="{{route('shippingpage')}}">
-                                    <button>Checkout</button></a>
+                            <tr>
+                                <td> </td>
+                                <td>
+                                    <a href="{{ route('shippingpage') }}">
+                                        <button>Checkout</button></a>
                                 </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 @php
-    $categories = App\Models\Category::latest()->get();
-    $publishers = App\Models\Publisher::latest()->get();
-    $authors = App\Models\Author::latest()->get();
+    $categories = App\Models\Category::orderBy('product_count','desc')->take(5)->get();
+    $publishers = App\Models\Publisher::orderBy('publisher_count','desc')->take(5)->get();
+    $authors = App\Models\Author::orderBy('book_count','desc')->take(5)->get();
 @endphp
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BiblioSmia</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
@@ -24,11 +25,16 @@
                 <i class="fa-solid fa-bars menu">
                     <div class="sub-menu-icon">
                         <ul>
-                            <li><a href="#">Categories</a></li>
-                            <li><a href="#">Publishers</a></li>
-                            <li><a href="#">Account</a></li>
-                            <li><a href="./login">Login</a></li>
-                            <li><a href="./signup">signup</a></li>
+                            <li><a href="{{ route('showallcategories') }}">Categories</a></li>
+                            <li><a href="{{ route('showallpublishers') }}">Publishers</a></li>
+                            <li><a href="{{ route('showallauthors') }}">Authors</a></li>
+                            @if (Auth::check())
+                                <li><a href="{{ route('useraccount') }}">Account</a></li>
+                            @else
+                                <li><a href="./login">Login</a></li>
+                                <li><a href="./register">Register</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </i>
@@ -43,7 +49,7 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li class="cat_pub"><a href="#">Categories</a>
+                    <li class="cat_pub"><a href="{{ route('showallcategories') }}">Categories</a>
                         <div class="cat_pub_submenu">
                             <ul>
                                 @foreach ($categories as $category)
@@ -51,10 +57,11 @@
                                             href="{{ route('categorydisplay', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
                                     </li>
                                 @endforeach
+                                <li><a href="{{route('showallcategories')}}">More</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="cat_pub"><a href="#">Publishers</a>
+                    <li class="cat_pub"><a href="{{ route('showallpublishers') }}">Publishers</a>
                         <div class="cat_pub_submenu">
                             <ul>
                                 @foreach ($publishers as $publisher)
@@ -62,10 +69,11 @@
                                             href="{{ route('publisherdisplay', [$publisher->id, $publisher->slug]) }}">{{ $publisher->publisher_name }}</a>
                                     </li>
                                 @endforeach
+                                <li><a href="{{route('showallpublishers')}}">More</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="cat_pub"><a href="#">Authors</a>
+                    <li class="cat_pub"><a href="{{ route('showallauthors') }}">Authors</a>
                         <div class="cat_pub_submenu">
                             <ul>
                                 @foreach ($authors as $author)
@@ -73,15 +81,17 @@
                                             href="{{ route('authordisplay', [$author->id, $author->slug]) }}">{{ $author->author_name }}</a>
                                     </li>
                                 @endforeach
+                                <li><a href="{{route('showallauthors')}}">More</a></li>
                             </ul>
                         </div>
                     </li>
                     @if (Auth::check())
-                        <li class="cat_pub"><a href="#">{{Auth::user()->name}}</a>
+                        <li class="cat_pub"><a href="{{ route('useraccount') }}" style="color: brown;font-weight:bold">
+                            {{ Auth::user()->name }}</a>
                             <div class="cat_pub_submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('useraccount')}}">Your Account</a>
+                                        <a href="{{ route('useraccount') }}">Your Account</a>
                                     </li>
                                     <li>
                                         <a href="/logout">Logout</a>
@@ -90,36 +100,36 @@
                             </div>
                         </li>
                     @else
-                    <li class="cat_pub"><a href="/login">Login</a>
-                        <div class="cat_pub_submenu">
-                            <ul>
-                                <li>
-                                    <a href="/login">Login</a>
-                                </li>
-                                <li>
-                                    <a href="/register">Register</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                        <li class="cat_pub"><a href="/login">Login</a>
+                            <div class="cat_pub_submenu">
+                                <ul>
+                                    <li>
+                                        <a href="/login">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="/register">Register</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     @endif
                 </ul>
             </nav>
         </div>
 
         <div class="login-search-cart">
-            {{-- @if (Auth::check())
-            @else
-                <a href="./login" class="login">Login</a>
-            @endif --}}
-
-            <a href="{{ route('cartpageview') }}" style="color:white"><i
-                    class="fa-solid fa-cart-shopping cart-button"></i></a>
-
-            <div class="search">
-                <input type="text" placeholder="search by book name" class="search-box">
-                <i class="fa-solid fa-magnifying-glass searchicon"><a href="#"></a></i>
-            </div>
+            <a href="{{ route('cartpageview') }}" class="cart-button">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+            </a>
+    
+            <form class="search" action="{{ route('search') }}" method="POST">
+                @csrf
+                <input type="text" placeholder="Search for a book or author" class="search-box" name="search_key">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
 
         </div>
     </div>
@@ -158,12 +168,9 @@
 
         <div class="follow">
             <h4>Follow Us</h4>
-            <a href="https:\www.facebook.com/bibliosmia" target="_blank"><i
-                    class="fa-brands fa-facebook fa-bounce"></i></a>
-            <a href="https:\www.instagram.com/bibliosmia" target="_blank"><i
-                    class="fa-brands fa-instagram fa-bounce"></i></a>
-            <a href="https:\www.twitter.com/bibliosmia" target="_blank"><i
-                    class="fa-brands fa-twitter fa-bounce"></i></a>
+            <a href="https:\www.facebook.com" target="_blank"><i class="fa-brands fa-facebook fa-bounce"></i></a>
+            <a href="https:\www.instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce"></i></a>
+            <a href="https:\www.twitter.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce"></i></a>
         </div>
     </div>
 

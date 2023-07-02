@@ -79,6 +79,16 @@ td:last-child {
 th:last-child {
     text-align: right;
 }
+
+.cart-add-some-product:hover{
+    cursor:pointer;
+    color:#5b6666;
+}
+
+.cart-add-some-product{
+    color:#00bfff;
+}
+
 @media only screen and (max-width:1000px){
     .small-container table{
         width: 600px;
