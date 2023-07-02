@@ -1,0 +1,71 @@
+.dashboard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard h1 {
+  text-align: center;
+}
+
+.dashboard div{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.dashboard-menu{
+  width: 300px;
+  text-align: left;
+}
+
+.dashboard-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-menu li {
+  margin: 20px;
+}
+
+.dashboard-menu li a {
+  text-decoration: none;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.dashboard-menu li.active a {
+  background-color: #2E8A99;
+  color: #fff;
+}
+
+.dashboard-content {
+  margin-top: 20px;
+  border-left:2px solid black;
+  padding-left: 50px;
+}
+
+.dashboard-content div {
+  display: none;
+}
+
+.dashboard-content div:target {
+  display: block;
+}
+tr td:nth-child(2){
+  text-align: right;
+}
+tr td{
+  text-align: center;
+}
+table,tr,td,th{
+  padding:5px;
+  border-spacing: 7px;
+}
+th{
+  background: #0E8388;
+  color:whitesmoke;
+}

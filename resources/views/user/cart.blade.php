@@ -84,7 +84,10 @@
                         </tr> --}}
                         <tr>
                             <td> </td>
-                            <td><a href="#"><button>Checkout</button></a></td>
+                            <td>
+                                <a href="{{route('shippingpage')}}">
+                                    <button>Checkout</button></a>
+                                </td>
                         </tr>
                     </tbody>
                 </table>

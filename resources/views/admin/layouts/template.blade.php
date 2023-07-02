@@ -143,6 +143,12 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="{{ route('approvedorders') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Approved Orders</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="{{ route('completedorders') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Completed Orders</div>
@@ -154,7 +160,7 @@
                             <div data-i18n="Analytics">Cancelled Orders</div>
                         </a>
                     </li>
-
+                    
 
 
                 </ul>

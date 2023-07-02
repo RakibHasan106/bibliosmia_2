@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\Publisher;
 use App\Models\Author;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class clientController extends Controller
@@ -90,17 +92,64 @@ class clientController extends Controller
         $cart_items = Cart::where('user_id', Auth::id())->get();
         return view('user.cart', compact('cart_items'));
     }
-    public function RemoveFromCart(request $req){
-        Cart::where('id',$req->cart_id)->decrement('quantity');
-        $quantity = Cart::where('id',$req->cart_id)->value('quantity');
-        $price = Book::where('id',$req->book_id)->value('price');
+    public function RemoveFromCart(request $req)
+    {
+        Cart::where('id', $req->cart_id)->decrement('quantity');
+        $quantity = Cart::where('id', $req->cart_id)->value('quantity');
+        $price = Book::where('id', $req->book_id)->value('price');
+        $cart_item = Cart::where('id', $req->cart_id)->first();
 
-        $total_price = $quantity * $price;
+        if ($quantity === 0) {
+            $cart_item->delete();
+        } else {
+            $total_price = $quantity * $price;
 
-        $cart_item = Cart::where('id',$req->cart_id)->first();
-        $cart_item->price = $total_price;
-        $cart_item->save();
 
-        return redirect()->route('cartpageview')->with('message','1 Book Deleted');
+            $cart_item->price = $total_price;
+            $cart_item->save();
+        }
+
+        return redirect()->route('cartpageview')->with('message', '1 Book Deleted');
+    }
+
+    public function ShippingInfo(){
+        return view('user.shippingpage');
+    }
+
+    public function ConfirmCheckout(request $req){
+        $phone_number = $req->phone_number;
+        $full_address = $req->full_address;
+        $postal_code = $req->postal_code;
+        return view('user.confirmcheckout',compact('phone_number','full_address','postal_code'));
+    }
+
+    public function ConfirmOrder(request $req){
+        $cart_items = Cart::where('user_id',Auth::id())->get();
+        $user_id = Auth::id();
+        $user_name = Auth::user()->name;
+
+        foreach($cart_items as $cart_item){
+            Order::insert([
+                'user_id' => $user_id,
+                'user_name' => $user_name,
+                'phone_number' => $req->phone_number,
+                'shipping_address' => $req->full_address,
+                'book_id' => $cart_item->book_id,
+                'postal_code' => $req->postal_code,
+                'quantity' => $cart_item->quantity ,
+                'total_price' => $cart_item->price,
+                'status' => 'pending',
+            ]);
+        }
+        Cart::where('user_id',$user_id)->delete();
+        
+        return redirect()->route('cartpageview')->with('message','Order Placed Successfully!');
+    }
+
+    public function UserAccount(){
+        $userid = Auth::id();
+        $orders = Order::where('user_id',$userid)->latest()->get();
+        $user_info = User::where('id',$userid)->first();
+        return view('user.useraccount',compact('orders','user_info'));
     }
 }

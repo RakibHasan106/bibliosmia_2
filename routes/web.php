@@ -26,9 +26,11 @@ Route::get('/', function () {
     return view('user.index');
 });
 
+
+
 Route::controller(clientController::class)->group(function(){
     Route::get('/','index');
-    Route::get('/login','LogIn');
+    //Route::get('/login','LogIn');
     Route::get('/signup','SignUp');
     Route::get('/aboutus','AboutUs');
     Route::get('/category/{id}/{slug}','CategoryDisplay')->name('categorydisplay');
@@ -42,6 +44,17 @@ Route::middleware(['auth','role:user'])->group(function(){
         Route::post('/add-to-cart','AddtoCart')->name('addtocart');
         Route::get('/cart','CartPageView')->name('cartpageview');
         Route::post('/cart','RemoveFromCart')->name('removefromcart');
+        Route::get('/shipping-info','ShippingInfo')->name('shippingpage');
+        Route::post('/confirm-checkout','ConfirmCheckout')->name('confirmcheckout');
+        Route::post('/confirmorder','ConfirmOrder')->name('confirmorder');
+        Route::get('user-account','UserAccount')->name('useraccount');
+    });
+    Route::get('/logout',function(){
+        session()->invalidate();
+    
+        session()->regenerateToken();
+    
+        return redirect('/');
     });
 });
 
@@ -98,17 +111,23 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::controller(OrderController::class)->group(function(){
         Route::get('/admin/pending-orders','PendingOrders')->name('pendingorders');
-        Route::get('/admin/completed-orders','CompletedOrders')->name('completedorders');
+        Route::get('/admin/approve-order/{id}','ApproveOrders')->name('approveorder');
+        Route::get('/admin/approved-orders','ApprovedOrders')->name('approvedorders');
+        Route::get('/admin/cancel-order/{id}','CancelOrder')->name('cancelorder');
         Route::get('/admin/cancelled-orders','CancelledOrders')->name('cancelledorders');
+        Route::get('admin/complete-order/{id}','CompleteOrder')->name('completeorder');
+        Route::get('/admin/completed-orders','CompletedOrders')->name('completedorders');
     });
 
     Route::get('/log_out',function(){
         session()->invalidate();
-
+    
         session()->regenerateToken();
-
+    
         return redirect('/login');
     });
 });
+
+
 
 require __DIR__.'/auth.php';

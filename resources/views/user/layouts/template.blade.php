@@ -3,6 +3,7 @@
 @php
     $categories = App\Models\Category::latest()->get();
     $publishers = App\Models\Publisher::latest()->get();
+    $authors = App\Models\Author::latest()->get();
 @endphp
 
 <head>
@@ -46,7 +47,9 @@
                         <div class="cat_pub_submenu">
                             <ul>
                                 @foreach ($categories as $category)
-                                    <li><a href="{{route('categorydisplay',[$category->id,$category->slug])}}">{{$category->category_name}}</a></li>
+                                    <li><a
+                                            href="{{ route('categorydisplay', [$category->id, $category->slug]) }}">{{ $category->category_name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -54,25 +57,64 @@
                     <li class="cat_pub"><a href="#">Publishers</a>
                         <div class="cat_pub_submenu">
                             <ul>
-                                @foreach($publishers as $publisher)
-                                    <li><a href="{{route('publisherdisplay',[$publisher->id,$publisher->slug])}}">{{$publisher->publisher_name}}</a></li>
+                                @foreach ($publishers as $publisher)
+                                    <li><a
+                                            href="{{ route('publisherdisplay', [$publisher->id, $publisher->slug]) }}">{{ $publisher->publisher_name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
                     </li>
-                    <li><a href="#">Account</a></li>
+                    <li class="cat_pub"><a href="#">Authors</a>
+                        <div class="cat_pub_submenu">
+                            <ul>
+                                @foreach ($authors as $author)
+                                    <li><a
+                                            href="{{ route('authordisplay', [$author->id, $author->slug]) }}">{{ $author->author_name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
+                    @if (Auth::check())
+                        <li class="cat_pub"><a href="#">{{Auth::user()->name}}</a>
+                            <div class="cat_pub_submenu">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('useraccount')}}">Your Account</a>
+                                    </li>
+                                    <li>
+                                        <a href="/logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @else
+                    <li class="cat_pub"><a href="/login">Login</a>
+                        <div class="cat_pub_submenu">
+                            <ul>
+                                <li>
+                                    <a href="/login">Login</a>
+                                </li>
+                                <li>
+                                    <a href="/register">Register</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </nav>
         </div>
 
         <div class="login-search-cart">
-            @if (session('user'))
-                <a href="logout" class="login">Logout</a>
+            {{-- @if (Auth::check())
             @else
                 <a href="./login" class="login">Login</a>
-            @endif
+            @endif --}}
 
-            <a href="{{route('cartpageview')}}" style="color:white"><i class="fa-solid fa-cart-shopping cart-button"></i></a>
+            <a href="{{ route('cartpageview') }}" style="color:white"><i
+                    class="fa-solid fa-cart-shopping cart-button"></i></a>
 
             <div class="search">
                 <input type="text" placeholder="search by book name" class="search-box">
@@ -81,7 +123,7 @@
 
         </div>
     </div>
-    
+
     @yield('content')
 
     <!-- Footer -->
