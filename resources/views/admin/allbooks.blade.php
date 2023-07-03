@@ -18,6 +18,7 @@
                             <th>Img</th>
                             <th>Publisher</th>
                             <th>Category</th>
+                            <th>Tag</th>
                             <th>Price</th>
                             <th>Stock</th>
                             <th>Actions</th>
@@ -36,8 +37,9 @@
                                 </td>
                                 <td>{{ $book->book_publisher_name }}</td>
                                 <td>{{ $book->book_category_name }}</td>
+                                <td>{{ $book->book_tag }}</td>
                                 <td>{{ $book->price }}</td>
-                                <td>{{ $book->quantity }}
+                                <td>{{ $book->quantity }}</td>
                                 <td>
                                     <a href="{{route('editbook',$book->id)}}" class="btn btn-primary">Edit</a>
                                     <a href="{{route('deletebook',$book->id)}}" class="btn btn-secondary">Delete</a>

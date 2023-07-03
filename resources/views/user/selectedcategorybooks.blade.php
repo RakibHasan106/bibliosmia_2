@@ -20,15 +20,15 @@
         </div>
         <br>
 
-        <div class="bookbycriteria" style="display:flex;justify-content:center">
+        <div class="bookbycriteria" style="display:flex;justify-content:center;flex-wrap:wrap">
             @if ($category->product_count != 0)
                 @foreach ($books as $book)
-                    <a href="{{route('bookpage',[$book->id,$book->slug])}}">
+                    <a href="{{ route('bookpage', [$book->id, $book->slug]) }}">
                         <div style="margin:20px">
                             <img src="/{{ $book->book_img }}" style="height:400px">
-                            <a href="#">
-                                <h3>{{ $book->book_name }}</h3>
-                            </a>
+
+                            <h3>{{ $book->book_name }}</h3>
+
                             <h4>{{ $book->author_name }}</h4>
                             <h4>BDT&nbsp{{ $book->price }}</h4>
                         </div>
@@ -48,4 +48,5 @@
             @endif
         </div>
     </div>
+    <br><br><br>
 @endsection

@@ -187,4 +187,9 @@ class clientController extends Controller
         $publishers = Publisher::all();
         return view('user.allpublishers',compact('publishers'));
     }
+
+    public function TagWiseDisplay($tag){
+        $books = Book::where('book_tag',$tag)->get();
+        return view('user.selectedtagbooks',compact('books','tag'));
+    }
 }

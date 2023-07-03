@@ -25,6 +25,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', function () {
     return view('user.index');
 });
+Route::get('/terms',function(){
+    return view('user.termsandconditions');
+})->name('terms');
+Route::get('/refundpolicy',function(){
+    return view('user.refundpolicy');
+})->name('refundpolicy');
 
 
 
@@ -33,6 +39,7 @@ Route::controller(clientController::class)->group(function(){
     //Route::get('/login','LogIn');
     Route::get('/signup','SignUp');
     Route::get('/aboutus','AboutUs');
+    Route::get('/tag/{tag}','TagWiseDisplay')->name('tagwisedisplay');
     Route::get('/category/{id}/{slug}','CategoryDisplay')->name('categorydisplay');
     Route::get('/publisher/{id}/{slug}','PublisherDisplay')->name('publisherdisplay');
     Route::get('/author/{id}/{slug}','AuthorDisplay')->name('authordisplay');
@@ -41,6 +48,7 @@ Route::controller(clientController::class)->group(function(){
     Route::get('/all-categories','ShowAllCategories')->name('showallcategories');
     Route::get('/all-authors','ShowAllAuthors')->name('showallauthors');
     Route::get('all-publishers','ShowAllPublishers')->name('showallpublishers');
+    
 });
 
 Route::middleware(['auth','role:user'])->group(function(){

@@ -23,5 +23,6 @@ class Book extends Model
         'book_page_no',
         'book_publish_date',
         'book_img',
+        'book_tag',
     ];
 }

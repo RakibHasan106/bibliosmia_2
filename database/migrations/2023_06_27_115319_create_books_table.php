@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('book_page_no');
             $table->date('book_publish_date');
             $table->string('book_img');
+            $table->string('book_tag')->nullable();
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ class BookController extends Controller
     public function StoreBook(Request $req){
         $req->validate([
             'book_name'=> 'required|unique:books',
-            'book_img'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'book_img'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'author_id'=>'required',
             'book_publisher_id'=> 'required',
             'book_category_id'=> 'required',
@@ -64,6 +64,7 @@ class BookController extends Controller
             'book_page_no' => $req->book_page_no,
             'book_publish_date' => $req->book_publish_date,
             'book_img' => $img_url,
+            'book_tag' => $req->book_tag,
         ]);
 
         Category::where('id',$category_id)->increment('product_count'); //product count means how many books under the category
@@ -91,7 +92,7 @@ class BookController extends Controller
     public function UpdateBook(request $req){
         $id = $req->idstorage;
         $req->validate([
-            'book_name'=> 'required|unique:books',
+            'book_name'=> 'required',
             'price'=> 'required',
             'quantity'=> 'required', 
             'book_publish_date'=>'required',
@@ -106,6 +107,7 @@ class BookController extends Controller
             'book_description' => $req->book_description,
             'book_page_no' => $req->book_page_no,
             'book_publish_date' => $req->book_publish_date,
+            'book_tag' => $req->book_tag,
         ]);
         return redirect()->route('allbooks')->with('message','Book Updated Successfully!');
     }
@@ -116,7 +118,7 @@ class BookController extends Controller
     public function UpdateBookImg(request $req){
         $id = $req -> idstorage;
         $req->validate([
-            'book_img'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'book_img'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $image = $req->file('book_img');

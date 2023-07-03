@@ -54,4 +54,5 @@
             <!-- Add more authors here -->
         </ul>
     </div>
+    <br><br><br>
 @endsection

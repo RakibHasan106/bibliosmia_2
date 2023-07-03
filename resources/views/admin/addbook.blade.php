@@ -103,6 +103,14 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-default-name">Book Tag</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="basic-default-name" name="book_tag"
+                                        placeholder="example: bestseller, newreleased etc." />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-default-name">Description</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="book_description" id="" cols="" rows=""

@@ -281,15 +281,11 @@ hr {
     align-items: center;
     border-radius: 10px;
     justify-content: space-between;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     padding: 10px;
-    z-index: 999;
     width: 100%;
     box-sizing: border-box;
 }
+
 
 .footer a {
     color: white;
@@ -423,72 +419,31 @@ hr {
 .wrapper {
     max-width: 1300px;
     width: 100%;
-    position: relative;
-}
-
-.wrapper i {
-    top: 50%;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    font-size: 1.25rem;
-    position: absolute;
-    text-align: center;
-    line-height: 50px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
-    transform: translateY(-50%);
-    transition: transform 0.1s linear;
-}
-
-.wrapper i:active {
-    transform: translateY(-50%) scale(0.85);
-}
-
-.wrapper i:first-child {
-    left: -22px;
-}
-
-.wrapper i:last-child {
-    right: -22px;
 }
 
 .wrapper .carousel {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 5) - 12px);
-    overflow-x: auto;
+    display:grid;
+    grid-template-rows: auto;
+    grid-template-columns: calc((100% / 5) - 12px) calc((100% / 5) - 12px) 
+                            calc((100% / 5) - 12px) calc((100% / 5) - 12px) 
+                            calc((100% / 5) - 12px)  ;
+    overflow-x:auto;
     scroll-snap-type: x mandatory;
     gap: 10px;
     border-radius: 8px;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+    /* display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 5) - 12px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; 
+    gap: 10px;
+     */
+    /* scroll-behavior: smooth;
+    scrollbar-width: none; */
+    /* display:flex;
+    overflow:auto; */
 }
 
-.carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel.no-transition {
-    scroll-behavior: auto;
-}
-
-.carousel.dragging {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-}
-
-.carousel.dragging .card {
-    cursor: grab;
-    user-select: none;
-}
-
-.carousel :where(.card, .img) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .carousel .card {
     scroll-snap-align: start;

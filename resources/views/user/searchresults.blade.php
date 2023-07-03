@@ -20,7 +20,7 @@
         </div>
         <br>
 
-        <div class="bookbycriteria" style="display:flex;justify-content:center">
+        <div class="bookbycriteria" style="display:flex;justify-content:center;flex-wrap:wrap">
             @if ($count != 0)
                 @foreach ($results as $result)
                     <a href="{{ route('bookpage', [$result->id, $result->slug]) }}">
@@ -48,4 +48,5 @@
             @endif
         </div>
     </div>
+    <br><br><br>
 @endsection

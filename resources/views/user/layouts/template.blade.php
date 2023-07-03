@@ -158,9 +158,9 @@
             <div class="About-terms-refund">
                 <h5><a href='./aboutus'>About Us</a></h5>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <h5><a href='#'>Terms & Conditions</a></h5>
+                <h5><a href='{{route('terms')}}'>Terms & Conditions</a></h5>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <h5><a href='#'>Refund Policy</a></h5>
+                <h5><a href='{{route('refundpolicy')}}'>Refund Policy</a></h5>
             </div>
         </div>
 

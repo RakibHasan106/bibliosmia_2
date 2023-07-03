@@ -1,8 +1,19 @@
 @extends('user.layouts.template')
 @section('style')
-    <script src="js/script.js" defer></script>
+    {{-- <script src="js/script.js" defer></script> --}}
 @endsection
 @section('content')
+    @php
+        $new_released_books = App\Models\Book::where('book_tag', 'newreleased')
+            ->take(7)
+            ->get();
+        $recent_bestseller_books = App\Models\Book::where('book_tag', 'recentbestsellers')
+            ->take(7)
+            ->get();
+        $bestseller_books = App\Models\Book::where('book_tag', 'bestseller')
+            ->take(7)
+            ->get();
+    @endphp
     {{-- Index Unique Page --}}
     <br><br>
 
@@ -12,33 +23,97 @@
     </div>
 
     {{-- Testing --}}
-    <h2 style="text-align: center; font-weight: 500;margin:5px;">Test Slider</h2>
+    
+    <h2 style="text-align: center; font-weight: 550;margin:5px;">
+        <a href="{{route('tagwisedisplay','newreleased')}}">New Released Books</a>
+    </h2>
     <hr>
     <div class="wrapper-container">
         <div class="wrapper">
-            <i id="left" class="fa-solid fa-angle-left"></i>
-            <ul class="carousel">           
-                
-                <li class="card">
-                    <a href="/bookpage">
-                        <div class="img"><img src="./images/All_the_Lights_We_Can't_See.jpg" alt="img"
-                                draggable="false"></div>
-                        <h2>All the Lights We Can't See</h2>
-                        <span>Anthony Doerr</span>
+            {{-- <i id="left" class="fa-solid fa-angle-left"></i> --}}
+            <ul class="carousel">
+                @foreach ($new_released_books as $new_released_book)
+                    <li class="card">
+                        <a href="{{ route('bookpage', [$new_released_book->id, $new_released_book->slug]) }}">
+                            <div class="img"><img src="{{ $new_released_book->book_img }}" alt="img not found"
+                                    draggable="false"></div>
+                            <h2>{{ $new_released_book->book_name }}</h2>
+                            <span>{{ $new_released_book->author_name }}</span>
+                            <br>
+                            <h6>BDT.{{ $new_released_book->price }}</h6>
+                        </a>
+                    </li>
+                @endforeach
+
+                {{-- <li class="more-button" style="display: flex;background-color:#383B39;height:50px;">
+                    <a href="">
+                        <div class="img">
+                            <i class="fa-solid fa-arrow-right" style="color: whitesmoke"></i>
+                        </div>
+                        <h2 style="color: whitesmoke">More</h2>
                         <br>
-                        <h6>BDT.500</h6>
                     </a>
-                </li>
-                
+                </li> --}}
+
             </ul>
-            <i id="right" class="fa-solid fa-angle-right"></i>
+            {{-- <i id="right" class="fa-solid fa-angle-right"></i> --}}
+        </div>
+    </div>
+
+    <h2 style="text-align: center; font-weight: 550;margin:5px;">
+        <a href="{{route('tagwisedisplay','recentbestsellers')}}">Recent Bestseller Books</a>
+        </h2>
+    <hr>
+    <div class="wrapper-container">
+        <div class="wrapper">
+            {{-- <i id="left" class="fa-solid fa-angle-left"></i> --}}
+            <ul class="carousel">
+                @foreach ($recent_bestseller_books as $recent_bestseller_book)
+                    <li class="card">
+                        <a href="{{ route('bookpage', [$recent_bestseller_book->id, $recent_bestseller_book->slug]) }}">
+                            <div class="img"><img src="{{ $recent_bestseller_book->book_img }}" alt="img not found"
+                                    draggable="false"></div>
+                            <h2>{{ $recent_bestseller_book->book_name }}</h2>
+                            <span>{{ $recent_bestseller_book->author_name }}</span>
+                            <br>
+                            <h6>BDT.{{ $recent_bestseller_book->price }}</h6>
+                        </a>
+                    </li>
+                @endforeach
+
+            </ul>
+            {{-- <i id="right" class="fa-solid fa-angle-right"></i> --}}
+        </div>
+    </div>
+
+    <h2 style="text-align: center; font-weight: 550;margin:5px;">
+        <a href="{{route('tagwisedisplay','bestseller')}}">All-time Bestseller Books</a>
+        </h2>
+    <hr>
+    <div class="wrapper-container">
+        <div class="wrapper">
+            {{-- <i id="left" class="fa-solid fa-angle-left"></i> --}}
+            <ul class="carousel">
+                @foreach ($bestseller_books as $bestseller_book)
+                    <li class="card">
+                        <a href="{{ route('bookpage', [$bestseller_book->id, $bestseller_book->slug]) }}">
+                            <div class="img"><img src="{{ $bestseller_book->book_img }}" alt="img not found"
+                                    draggable="false"></div>
+                            <h2>{{ $bestseller_book->book_name }}</h2>
+                            <span>{{ $bestseller_book->author_name }}</span>
+                            <br>
+                            <h6>BDT.{{ $bestseller_book->price }}</h6>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+            {{-- <i id="right" class="fa-solid fa-angle-right"></i> --}}
         </div>
     </div>
 
 
-
     {{-- Books --}}
-    <h2 style="text-align: center; font-weight: 500;margin:5px;">Featured</h2>
+    {{-- <h2 style="text-align: center; font-weight: 500;margin:5px;">Featured</h2>
     <hr>
     <div class="images">
         <div class="book"><img src="./images/All_the_Lights_We_Can't_See.jpg" alt="img not found">
@@ -86,9 +161,9 @@
         </div>
         <!-- <img src="./images/Persopolis.jpg" alt="img not found"> -->
     </div>
-    <br><br><br>
+    <br><br><br> --}}
 
-    <h2 style="text-align: center; font-weight: 500;margin:5px">Classics</h2>
+    {{-- <h2 style="text-align: center; font-weight: 500;margin:5px">Classics</h2>
     <hr>
     <div class="images">
         <div class="book"> <img src="./images/Swann's_Way.jpg" alt="img not found">
@@ -279,6 +354,6 @@
             <h6 style="padding-left:5px;margin-top: 0px;">BDT.560</h6>
         </div>
 
-    </div>
+    </div> --}}
     <br><br><br>
 @endsection
