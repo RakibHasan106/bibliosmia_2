@@ -1,66 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Bibliosmia - Online Bookstore
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Bibliosmia** is an online bookstore web application that allows users to browse, purchase, and manage books. It features a user authentication system, an admin panel for managing books, and a cart system for easy purchasing.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🛍 User Section
+- Browse books by categories
+- Search for books
+- Add books to the cart
+- Checkout process
+- User authentication (registration & login)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🔑 Admin Section
+- Add, update, and delete books
+- Manage users
+- View and manage orders
+- Assign user roles (Admin/User)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🛒 Cart System
+- Add books to the cart
+- Update or remove items from the cart
+- Secure checkout
 
-## Learning Laravel
+## 🛠 Tech Stack
+- **Frontend:** HTML, CSS, Bootstrap
+- **Backend:** PHP, Laravel
+- **Database:** MySQL (using phpMyAdmin via XAMPP)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📸 Screenshots
+*(Add images here using the GitHub markdown format:)*
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```md
+![Homepage](screenshots/homepage.png)
+![Book Details](screenshots/book_details.png)
+![Admin Panel](screenshots/admin_panel.png)
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠 Installation & Setup
 
-## Laravel Sponsors
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/yourusername/bibliosmia.git
+cd bibliosmia
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 2️⃣ Install Dependencies
+```sh
+composer install
+npm install  # (If using Breeze or additional frontend dependencies)
+```
 
-### Premium Partners
+### 3️⃣ Configure Environment
+```sh
+cp .env.example .env
+php artisan key:generate
+```
+Set up database credentials in `.env`:
+```env
+DB_DATABASE=bibliosmia
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### 4️⃣ Migrate & Seed the Database
+```sh
+php artisan migrate --seed
+```
 
-## Contributing
+### 5️⃣ Serve the Application
+```sh
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Now, visit **http://127.0.0.1:8000** in your browser. 🎉
 
-## Code of Conduct
+## 📦 Database Backup & Restore
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🔄 Backup MySQL Database (Using phpMyAdmin)
+1. Open **phpMyAdmin** (`http://localhost/phpmyadmin`)
+2. Select the **bibliosmia** database
+3. Click **Export** > Select **Quick** and **SQL** format
+4. Click **Go** and save the `.sql` file
 
-## Security Vulnerabilities
+### ♻️ Restore MySQL Database
+1. Open **phpMyAdmin**
+2. Create a new database named `bibliosmia`
+3. Click **Import**, choose the saved `.sql` file, and upload it
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🤝 Contributing
+Feel free to fork this repository, submit issues, or make pull requests!
 
-## License
+## 📄 License
+This project is **open-source** and available under the **MIT License**.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+🚀 *Built with ❤️ using Laravel and MySQL*

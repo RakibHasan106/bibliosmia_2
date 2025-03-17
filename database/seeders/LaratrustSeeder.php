@@ -60,16 +60,28 @@ class LaratrustSeeder extends Seeder
             // Add all permissions to the role
             $role->permissions()->sync($permissions);
 
-            if (Config::get('laratrust_seeder.create_users')) {
-                $this->command->info("Creating '{$key}' user");
-                // Create default user for each role
+            // if (Config::get('laratrust_seeder.create_users')) {
+            //     $this->command->info("Creating '{$key}' user");
+            //     // Create default user for each role
+            //     $user = \App\Models\User::create([
+            //         'name' => ucwords(str_replace('_', ' ', $key)),
+            //         'email' => $key.'@app.com',
+            //         'password' => bcrypt('password')
+            //     ]);
+            //     $user->addRole($role);
+            // }
+
+            //below is modified to add a default admin during running the first migration.
+            if ($key === 'admin' && Config::get('laratrust_seeder.create_users')) {
+                $this->command->info("Creating default admin user...");
                 $user = \App\Models\User::create([
-                    'name' => ucwords(str_replace('_', ' ', $key)),
-                    'email' => $key.'@app.com',
-                    'password' => bcrypt('password')
+                    'name' => 'Admin',
+                    'email' => 'admin@bibliosmia.com',  // Change if needed
+                    'password' => bcrypt('password')  // Change if needed
                 ]);
                 $user->addRole($role);
             }
+            
 
         }
     }
