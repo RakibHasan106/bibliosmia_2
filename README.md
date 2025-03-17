@@ -53,15 +53,15 @@
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/bibliosmia.git
-cd bibliosmia
+git clone https://github.com/RakibHasan106/bibliosmia_2.git
+cd bibliosmia_2
 ```
 
 ### 2️⃣ Install Dependencies (Do these sequentially)
     
-    #### Download and install xampp
-    #### Download and install composer
-    #### Open Xampp and start apache and mysql server
+    Download and install xampp (`https://www.apachefriends.org/download.html`)
+    Download and install composer (`https://getcomposer.org/download/`)
+    Open Xampp and start apache and mysql server
 
 ### 3️⃣ Configure Environment
 As the `.env` file is excluded from the version control, you have to generate a new `.env` file and generate a new key for the laravel app.
@@ -78,7 +78,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Now if you want to recreate the databases Do the Following. But if you don't want the hassle and happy to use my already created database, Go to step 7️⃣.
+Now if you want to recreate the databases, follow from step 4️⃣. But if you don't want the hassle and happy to use my already created database, Go to step 7️⃣.
 
 ### 4️⃣ Create Database
 *	Go to localhost/phpmyadmin (make sure the apache and mysql servers are turned on in the xampp app).
