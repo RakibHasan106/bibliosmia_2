@@ -32,20 +32,20 @@
 
 
 ![Homepage](screenshots/Homepage.jpg)
-![Book Details](screenshots/bookdetail.jpg)
+![Book Details](screenshots/Bookdetail.jpg)
 ![Cart](screenshots/cart.jpg)
-![Shipping Information](screenshot/shipping_information.jpg)
-![Order Confirmation](screenshot/order_confirmation.jpg)
-![Order Placement](screenshot/order_placed_cart_empty.jpg)
+![Shipping Information](screenshots/shipping_information.jpg)
+![Order Confirmation](screenshots/order_confirmation.jpg)
+![Order Placement](screenshots/order_placed_cart_empty.jpg)
 
 ![Admin Panel Dashboard](screenshots/dashboard.jpg)
-![Add Author](screenshot/add_author.jpg)
-![Add Book](screenshot/add_book.jpg)
-![All Books](screenshot/all_books.jpg)
-![Pending Orders](screenshot/pending_orders.jpg)
-![Approved Orders](screenshot/approved_orders.jpg)
-![Completed Orders](screenshot/completed_orders.jpg)
-![Cancelled Orders](screenshot/cancelled_orders.jpg)
+![Add Author](screenshots/add_author.jpg)
+![Add Book](screenshots/add_book.jpg)
+![All Books](screenshots/all_books.jpg)
+![Pending Orders](screenshots/pending_orders.jpg)
+![Approved Orders](screenshots/approved_orders.jpg)
+![Completed Orders](screenshots/completed_orders.jpg)
+![Cancelled Orders](screenshots/cancelled_orders.jpg)
 
 
 ## 🛠 Installation & Setup
