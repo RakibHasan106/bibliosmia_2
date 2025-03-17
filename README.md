@@ -1,6 +1,6 @@
 # 📚 Bibliosmia - Online Bookstore
 
-**Bibliosmia** is an online bookstore developed as a third-year university web project. Built from scratch using HTML, CSS, PHP, and Laravel, this platform provides a seamless experience for both customers and administrators. Users can browse books, add them to their cart, and complete purchases, while administrators can manage the bookstore efficiently through the admin panel.
+**Bibliosmia** is an online bookstore developed as my third-year university web project. Built from scratch using HTML, CSS, PHP, and Laravel, this platform provides a seamless experience for both customers and administrators. Users can browse books, add them to their cart, and complete purchases, while administrators can manage the bookstore efficiently through the admin panel.
 
 ## 🚀 Features
 
