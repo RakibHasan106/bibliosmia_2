@@ -30,7 +30,7 @@
 ## 📸 Screenshots
 
 
-```md
+
 ![Homepage](screenshots/Homepage.jpg)
 ![Book Details](screenshots/bookdetail.jpg)
 ![Cart](screenshots/cart.jpg)
@@ -46,7 +46,7 @@
 ![Approved Orders](screenshot/approved_orders.jpg)
 ![Completed Orders](screenshot/completed_orders.jpg)
 ![Cancelled Orders](screenshot/cancelled_orders.jpg)
-```
+
 
 ## 🛠 Installation & Setup
 
